@@ -20,11 +20,11 @@ public class Addresses {
     }
 
     @RequestMapping(method= RequestMethod.GET)
-    @ResponseBody public Address[] all(String token) {
+    @ResponseBody public Address[] all() {
         return this.addressesBackend;
     }
 
-    public Address getAddress(String appToken, String addressId) {
+    public Address getAddress(String addressId) {
         return null;
     }
 }
