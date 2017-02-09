@@ -1,0 +1,29 @@
+= Consumer Driven Contracts - a workshop
+dada <dada@dada.com>
+2017
+:author:    dada
+ifndef::imagesdir[:imagesdir: images]
+:menu:
+:goto:
+:scale:
+:help:
+:toc:
+:status:
+:blank:
+:figure-caption!:
+
+== Introduction
+
+Important:
+
+* consumer
+* code first
+* ...
+
+image::question_mark.jpg[question mark,,,, link="https://martinfowler.com/articles/consumerDrivenContracts.html"]
+
+So, let's start.
+
+== The end
+
+dada

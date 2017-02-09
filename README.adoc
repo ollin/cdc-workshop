@@ -1,3 +1,65 @@
 = CDC Workshop Repository
 
 image:https://badges.gitter.im/cdc-workshop/Lobby.svg[link="https://gitter.im/cdc-workshop/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]
+
+== Idea
+
+There is an address service which delivers addresses. This is the producer.
+At the moment there is one Consumer which is an invoice service which can
+produce invoices.
+
+== Working with the code
+
+To develop, run and build a JDK 8 is required. The build system is
+https://gradle.org/[gradle].
+The services are implemented with https://projects.spring.io/spring-boot/[spring boot].
+
+=== Test the code
+
+_cd_ into the directory of your checkout.
+
+To test all services:
+
+[listing]
+----
+$ ./gradlew test # for linux
+----
+
+[listing]
+----
+$ ./gradlew.bat test # for windows
+----
+
+=== Run address-service
+
+[listing]
+----
+$ ./gradlew :address-service:bootRun
+----
+
+TIP: `ctrl^c` ends the running spring boot server
+
+
+=== Run invoice-service
+
+[listing]
+----
+$ ./gradlew :invoice-service:bootRun
+----
+
+== Working with the presentation
+
+To generate the presentation:
+
+[listing]
+----
+$ ./gradlew asciidoctor
+----
+
+afterwards you can present with a browser (here we are using firefox):
+
+[listing]
+----
+$ firefox ./presentation/build/asciidoc/html5/presentation.html &
+----
+
