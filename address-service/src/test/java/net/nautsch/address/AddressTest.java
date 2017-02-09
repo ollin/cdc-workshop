@@ -27,6 +27,7 @@ public class AddressTest {
         String result = address.getFirstname();
         // then
         assertThat(result, is(givenFirstName));
+        fail("test travis -> gitter.im/ollin/cdc-workshop");
 
     }
 
