@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/addresses")
 public class Addresses {
 
-    private final Address[] addresses;
+    private final Address[] addressesBackend;
 
-    public Addresses() {
-        this.addresses = new Address[] {
+    Addresses() {
+        this.addressesBackend = new Address[] {
                 new Address("Wloka", "Jan")
                 , new Address("Nieminen", "Miko")
                 , new Address("Nautsch", "Oliver")
@@ -20,7 +20,11 @@ public class Addresses {
     }
 
     @RequestMapping(method= RequestMethod.GET)
-    public @ResponseBody Address[] all() {
-        return this.addresses;
+    @ResponseBody public Address[] all(String token) {
+        return this.addressesBackend;
+    }
+
+    public Address getAddress(String appToken, String addressId) {
+        return null;
     }
 }
