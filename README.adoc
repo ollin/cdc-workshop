@@ -5,9 +5,8 @@ image:https://travis-ci.org/ollin/cdc-workshop.svg?branch=master["Build Status",
 
 == Idea
 
-There is an address service which delivers addresses. This is the producer.
-At the moment there is one Consumer which is an invoice service which can
-produce invoices.
+There is an _address service_ which delivers addresses. This is the *producer*.
+In addition there is an _invoice service_ which is a *consumer* of the address service.
 
 == Working with the code
 
