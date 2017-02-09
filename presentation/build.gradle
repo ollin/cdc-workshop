@@ -1,0 +1,99 @@
+buildscript {
+    dependencies {
+        classpath 'org.ysb33r.gradle:vfs-gradle-plugin:1.0-beta1'
+        classpath 'commons-httpclient:commons-httpclient:3.1'
+        classpath 'org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.11'
+    }
+}
+
+plugins {
+    id 'org.asciidoctor.convert' version '1.5.3'
+    id 'com.github.jruby-gradle.base' version '1.2.1'
+}
+
+apply plugin: 'com.github.jruby-gradle.base'
+apply plugin: 'org.ysb33r.vfs'
+apply plugin: 'java'
+apply plugin: 'org.asciidoctor.convert'
+
+version = '2.0'
+
+ext {
+    deckjsVersion = 'master'
+    asciidoctorBackendVersion = 'master'
+    downloadDir = new File(buildDir,'download')
+    templateDir = new File(downloadDir,'templates')
+    deckjsDir   = new File(downloadDir,'deck.js')
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    gems 'rubygems:haml:4.0.6'
+}
+
+task download {
+    doLast {
+        mkdir downloadDir
+        vfs {
+            cp "zip:https://github.com/asciidoctor/asciidoctor-deck.js/archive/${asciidoctorBackendVersion}.zip!asciidoctor-deck.js-${asciidoctorBackendVersion}/templates",
+                    templateDir, recursive: true, overwrite: true
+            cp "zip:https://github.com/imakewebthings/deck.js/archive/${deckjsVersion}.zip!deck.js-${deckjsVersion}",
+                    deckjsDir, recursive: true, overwrite: true
+        }
+    }
+}
+
+download {
+    description "Download extra deckjs resources"
+    outputs.dir templateDir
+    outputs.dir deckjsDir
+}
+
+asciidoctorj {
+    version = '1.5.4'
+}
+
+asciidoctor {
+    dependsOn jrubyPrepare
+
+    sources {
+        include 'presentation.adoc'
+    }
+
+    resources {
+        from (sourceDir) {
+            include 'images/**'
+        }
+        from (downloadDir) {
+            include 'deck.js/**'
+        }
+    }
+
+    backends 'html5', 'pdf'
+
+    attributes \
+        'build-gradle': file('build.gradle'),
+        'encoding': 'utf-8',
+        'sourcedir': project.sourceSets.main.java.srcDirs[0],
+        'endpoint-url': '',
+        'source-highlighter': 'coderay',
+        'imagesdir': './images',
+        'toc': 'left',
+        'icons': 'font',
+        'setanchors': '',
+        'idprefix': '',
+        'idseparator': '-',
+        'docinfo1': '',
+        'deckjs_theme': 'neon',
+        'deckjs_transition': 'fade'
+
+
+
+    options template_dirs : [new File(templateDir,'haml').absolutePath ]
+
+    dependsOn download
+}
+

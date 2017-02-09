@@ -1,8 +1,6 @@
 = CDC Workshop Repository
 
 image:https://badges.gitter.im/ollin/cdc-workshop.svg[link="https://gitter.im/ollin/cdc-workshop?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]
-
-image:https://badges.gitter.im/cdc-workshop/Lobby.svg[link="https://gitter.im/cdc-workshop/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]
 image:https://travis-ci.org/ollin/cdc-workshop.svg?branch=master["Build Status", link="https://travis-ci.org/ollin/cdc-workshop"]
 
 == Idea
