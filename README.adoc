@@ -49,6 +49,8 @@ $ ./gradlew :invoice-service:bootRun
 
 == Working with the presentation
 
+The link:presentation/src/docs/asciidoc/presentation.adoc[presentation] is written with http://asciidoctor.org/[asciidoctor]
+
 To generate the presentation:
 
 [listing]
