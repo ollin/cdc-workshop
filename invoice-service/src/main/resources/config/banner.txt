@@ -1,0 +1,8 @@
+ _                 _
+(_)               (_)
+ _ _ ____   _____  _  ___ ___
+| | '_ \ \ / / _ \| |/ __/ _ \
+| | | | \ V / (_) | | (_|  __/
+|_|_| |_|\_/ \___/|_|\___\___|
+ :: Invoice     ::        ${application.formatted-version}
+ :: Spring Boot ::        ${spring-boot.formatted-version}

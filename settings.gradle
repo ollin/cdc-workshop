@@ -16,3 +16,6 @@ include 'services:webservice'
 */
 
 rootProject.name = 'cdc-workshop'
+
+include("address-service")
+include("invoice-service")

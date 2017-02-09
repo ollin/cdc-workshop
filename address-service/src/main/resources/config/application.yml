@@ -1,0 +1,5 @@
+---
+banner:
+  location: classpath:/config/banner.txt
+server:
+    port: 8888
