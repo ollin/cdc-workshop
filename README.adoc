@@ -39,6 +39,9 @@ $ ./gradlew :address-service:bootRun
 
 TIP: `ctrl^c` ends the running spring boot server
 
+http://localhost:8888/addresses/ delivers the list of all addresses.
+
+
 
 === Run invoice-service
 
@@ -46,6 +49,8 @@ TIP: `ctrl^c` ends the running spring boot server
 ----
 $ ./gradlew :invoice-service:bootRun
 ----
+
+http://localhost:7777/invoices/ delivers the list of all invoices.
 
 == Working with the presentation
 
