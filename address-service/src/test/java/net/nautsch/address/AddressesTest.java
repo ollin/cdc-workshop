@@ -16,7 +16,7 @@ public class AddressesTest {
         // given
         Addresses cut = new Addresses();
         // when
-        Address[] result = cut.all();
+        Address[] result = cut.all("");
         // then
         assertThat(result, notNullValue());
     }
