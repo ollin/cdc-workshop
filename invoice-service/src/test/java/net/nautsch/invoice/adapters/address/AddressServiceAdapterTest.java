@@ -1,24 +1,85 @@
 package net.nautsch.invoice.adapters.address;
 
+import au.com.dius.pact.consumer.ConsumerPactBuilder;
+import au.com.dius.pact.consumer.PactError;
+import au.com.dius.pact.consumer.TestRun;
+import au.com.dius.pact.consumer.VerificationResult;
+import au.com.dius.pact.consumer.dsl.QuoteUtil;
+import au.com.dius.pact.model.MockProviderConfig;
+import au.com.dius.pact.model.PactFragment;
+import au.com.dius.pact.model.PactSpecVersion;
 import net.nautsch.invoice.Address;
+import org.apache.http.entity.ContentType;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import static org.hamcrest.CoreMatchers.notNullValue;
+import java.util.HashMap;
+import java.util.Map;
+
+import static au.com.dius.pact.consumer.ConsumerPactTest.PACT_VERIFIED;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 /**
- * unit test.
+ * integration test.
  */
 public class AddressServiceAdapterTest {
 
+    private static final String ADDRESS_CONSUMER = "address_service_consumer";
+    private static final String INVOICE_PROVIDER = "invoice_service_provider";
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AddressServiceAdapterTest.class);
+
+
     @Test
     public void shouldDeliverAnAddress() {
-        // given
-        AddressServiceAdapter sut = new AddressServiceAdapter();
-        // when
-        Address result = sut.getAddress("address-1");
-        // then
-        assertThat(result, notNullValue());
+        MockProviderConfig config = MockProviderConfig.createDefault(PactSpecVersion.V3);
+
+        String responseBody = QuoteUtil.convert("{'forename': 'Jan', 'surname': 'Wloka'}");
+
+        PactFragment fragment = buildPactFragment("", responseBody, "get an address");
+
+
+
+        runTest(fragment);
+    }
+
+    private PactFragment buildPactFragment(String body, String responseBody, String description) {
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Content-Type", ContentType.APPLICATION_JSON.toString());
+        return ConsumerPactBuilder
+                .consumer(ADDRESS_CONSUMER)
+                .hasPactWith(INVOICE_PROVIDER)
+                .uponReceiving(description)
+                    .path("/address/1")
+                    .method("GET")
+                    .body(body)
+                    .headers(new HashMap<>())
+                .willRespondWith()
+                    .status(200)
+                    .body(responseBody)
+                    .headers(headers)
+                    .toFragment();
+    }
+
+    private void runTest(final PactFragment pactFragment) {
+        MockProviderConfig config = MockProviderConfig.createDefault(PactSpecVersion.V3);
+        VerificationResult result = pactFragment.runConsumer(config, new TestRun() {
+            @Override
+            public void run(MockProviderConfig config) {
+                Address result = new AddressServiceAdapter(config.url()).getAddress("1");
+                assertThat(result.getForename(), is("Jan"));
+                assertThat(result.getSurname(), is("Wloka"));
+            }
+        });
+
+        if (result instanceof PactError) {
+            throw new RuntimeException(((PactError)result).error());
+        }
+
+        assertEquals(PACT_VERIFIED, result);
     }
 
 }

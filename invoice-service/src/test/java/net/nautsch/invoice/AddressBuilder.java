@@ -29,7 +29,7 @@ public class AddressBuilder {
         }
 
         @Override
-        public String getFirstname() {
+        public String getForename() {
             return firstname;
         }
     }
