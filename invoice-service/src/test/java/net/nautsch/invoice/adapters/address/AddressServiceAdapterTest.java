@@ -19,7 +19,6 @@ import java.util.Map;
 
 import static au.com.dius.pact.consumer.ConsumerPactTest.PACT_VERIFIED;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -35,13 +34,8 @@ public class AddressServiceAdapterTest {
 
     @Test
     public void shouldDeliverAnAddress() {
-        MockProviderConfig config = MockProviderConfig.createDefault(PactSpecVersion.V3);
-
         String responseBody = QuoteUtil.convert("{'forename': 'Jan', 'surname': 'Wloka'}");
-
         PactFragment fragment = buildPactFragment("", responseBody, "get an address");
-
-
 
         runTest(fragment);
     }
@@ -79,7 +73,6 @@ public class AddressServiceAdapterTest {
             throw new RuntimeException(((PactError)result).error());
         }
 
-        assertEquals(PACT_VERIFIED, result);
+        assertThat(result, is(PACT_VERIFIED));
     }
-
 }

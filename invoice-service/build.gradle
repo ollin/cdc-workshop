@@ -24,6 +24,10 @@ jar {
     }
 }
 
+test {
+    systemProperties['pact.rootDir'] = "$rootDir/build/pacts"
+}
+
 repositories {
     mavenCentral()
 }
