@@ -7,6 +7,6 @@ public interface Address {
 
     String getSurname();
 
-    String getForename();
+    String getFirstName();
 
 }

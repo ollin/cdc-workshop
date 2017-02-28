@@ -28,8 +28,7 @@ public class AddressBuilder {
             return surname;
         }
 
-        @Override
-        public String getForename() {
+        public String getFirstName() {
             return firstname;
         }
     }

@@ -1,5 +1,5 @@
 = Consumer Driven Contracts - a workshop
-dada <dada@dada.com>
+Oliver Nautsch <oliver.nautsch@nautsch.com>
 2017
 :author:    dada
 ifndef::imagesdir[:imagesdir: images]
@@ -14,15 +14,11 @@ ifndef::imagesdir[:imagesdir: images]
 
 == Introduction
 
-Important:
+=== Run the test
 
-* consumer
-* code first
-* ...
-
-image::question_mark.jpg[question mark,,,, link="https://martinfowler.com/articles/consumerDrivenContracts.html"]
-
-So, let's start.
+* checkout repo
+* cd into cdc-workshop
+* run `gradle test` (not from IDE because of the env variable `pact.rootDir` defined in build.gradle, or you add this environment variable)
 
 == The end
 

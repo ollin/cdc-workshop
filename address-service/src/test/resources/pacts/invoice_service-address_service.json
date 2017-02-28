@@ -1,0 +1,36 @@
+{
+    "provider": {
+        "name": "address_service"
+    },
+    "consumer": {
+        "name": "invoice_service"
+    },
+    "interactions": [
+        {
+            "description": "get an address",
+            "request": {
+                "method": "GET",
+                "path": "/addresses/1",
+                "body": ""
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json; charset=UTF-8"
+                },
+                "body": {
+                    "firstName": "Jan",
+                    "surname": "Wloka"
+                }
+            }
+        }
+    ],
+    "metadata": {
+        "pact-specification": {
+            "version": "3.0.0"
+        },
+        "pact-jvm": {
+            "version": "3.3.6"
+        }
+    }
+}

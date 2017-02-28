@@ -25,7 +25,7 @@ jar {
 }
 
 test {
-    systemProperties['pact.rootDir'] = "$rootDir/build/pacts"
+    systemProperties['pact.rootDir'] = "$rootDir/address-service/src/test/resources/pacts"
 }
 
 repositories {

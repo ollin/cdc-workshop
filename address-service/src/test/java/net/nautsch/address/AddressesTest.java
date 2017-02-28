@@ -13,11 +13,20 @@ public class AddressesTest {
     @Test
     public void shouldReturnList() throws Exception {
         // given
-        Addresses cut = new Addresses();
+        Addresses sut = new Addresses();
         // when
-        Address[] result = cut.all();
+        Address[] result = sut.all();
         // then
         assertThat(result, notNullValue());
     }
 
+    @Test
+    public void shouldReturnOneAddress() {
+        // given
+        Addresses sut = new Addresses();
+        // when
+        Address result = sut.getAddress("1");
+        // then
+        assertThat(result, notNullValue());
+    }
 }

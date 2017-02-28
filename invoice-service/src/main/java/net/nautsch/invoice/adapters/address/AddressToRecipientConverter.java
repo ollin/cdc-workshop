@@ -11,6 +11,6 @@ import java.util.function.Function;
 public class AddressToRecipientConverter implements Function<Address, Recipient> {
     @Override
     public Recipient apply(Address address) {
-        return new Recipient(address.getForename() + " " + address.getSurname());
+        return new Recipient(address.getFirstName() + " " + address.getSurname());
     }
 }

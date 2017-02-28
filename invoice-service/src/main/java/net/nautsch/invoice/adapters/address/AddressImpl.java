@@ -8,7 +8,7 @@ import net.nautsch.invoice.Address;
 class AddressImpl implements Address {
 
     private String surname;
-    private String forename;
+    private String firstName;
 
     @Override
     public String getSurname() {
@@ -20,11 +20,11 @@ class AddressImpl implements Address {
     }
 
     @Override
-    public String getForename() {
-        return forename;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setForename(String forename) {
-        this.forename = forename;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 }

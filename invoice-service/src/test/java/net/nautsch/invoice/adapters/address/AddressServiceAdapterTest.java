@@ -26,15 +26,15 @@ import static org.junit.Assert.assertThat;
  */
 public class AddressServiceAdapterTest {
 
-    private static final String ADDRESS_CONSUMER = "address_service_consumer";
-    private static final String INVOICE_PROVIDER = "invoice_service_provider";
+    private static final String ADDRESS = "address_service";
+    private static final String INVOICE = "invoice_service";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AddressServiceAdapterTest.class);
 
 
     @Test
     public void shouldDeliverAnAddress() {
-        String responseBody = QuoteUtil.convert("{'forename': 'Jan', 'surname': 'Wloka'}");
+        String responseBody = QuoteUtil.convert("{'firstName': 'Jan', 'surname': 'Wloka'}");
         PactFragment fragment = buildPactFragment("", responseBody, "get an address");
 
         runTest(fragment);
@@ -44,10 +44,10 @@ public class AddressServiceAdapterTest {
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", ContentType.APPLICATION_JSON.toString());
         return ConsumerPactBuilder
-                .consumer(ADDRESS_CONSUMER)
-                .hasPactWith(INVOICE_PROVIDER)
+                .consumer(INVOICE)
+                .hasPactWith(ADDRESS)
                 .uponReceiving(description)
-                    .path("/address/1")
+                    .path("/addresses/1")
                     .method("GET")
                     .body(body)
                     .headers(new HashMap<>())
@@ -64,7 +64,7 @@ public class AddressServiceAdapterTest {
             @Override
             public void run(MockProviderConfig config) {
                 Address result = new AddressServiceAdapter(config.url()).getAddress("1");
-                assertThat(result.getForename(), is("Jan"));
+                assertThat(result.getFirstName(), is("Jan"));
                 assertThat(result.getSurname(), is("Wloka"));
             }
         });

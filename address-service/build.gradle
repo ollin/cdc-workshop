@@ -24,6 +24,12 @@ jar {
     }
 }
 
+test {
+    systemProperties['pact.rootDir'] = "$rootDir/build/pacts"
+}
+test.dependsOn ':invoice-service:test'
+
+
 repositories {
     mavenCentral()
 }
@@ -33,8 +39,11 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-actuator")
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("au.com.dius:pact-jvm-provider-junit_2.11:3.3.6")
     testCompile("junit:junit")
 }
+
+
 
 
 

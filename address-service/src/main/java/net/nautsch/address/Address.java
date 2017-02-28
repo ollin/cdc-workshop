@@ -2,19 +2,25 @@ package net.nautsch.address;
 
 public class Address {
 
-    private final String firstname;
+    private final String id;
+    private final String firstName;
     private final String surname;
 
-    public Address(String surname, String firstName) {
+    public Address(String id, String surname, String firstName) {
+        this.id = id;
         this.surname = surname;
-        this.firstname = firstName;
+        this.firstName = firstName;
     }
 
     public String getSurname() {
         return surname;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getId() {
+        return id;
     }
 }

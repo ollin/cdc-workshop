@@ -18,6 +18,6 @@ public class AddressServiceAdapter implements AddressProvider {
     @Override
     public Address getAddress(String addressId) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(baseUrl + "/address/" + addressId, AddressImpl.class);
+        return restTemplate.getForObject(baseUrl + "/addresses/" + addressId, AddressImpl.class);
     }
 }

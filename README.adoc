@@ -22,12 +22,12 @@ To test all services:
 
 [listing]
 ----
-$ ./gradlew test # for linux
+$ ./gradlew clean test # for linux
 ----
 
 [listing]
 ----
-$ ./gradlew.bat test # for windows
+$ ./gradlew.bat clean test # for windows
 ----
 
 === Run address-service
