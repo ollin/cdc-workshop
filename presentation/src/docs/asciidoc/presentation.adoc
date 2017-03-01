@@ -16,9 +16,13 @@ ifndef::imagesdir[:imagesdir: images]
 
 === Run the test
 
-* checkout repo
+* checkout repo ``
 * cd into cdc-workshop
 * run `gradle test` (not from IDE because of the env variable `pact.rootDir` defined in build.gradle, or you add this environment variable)
+
+=== Projects
+
+image::service-overview.draw.io.png[projects - producer - consumer]
 
 == The end
 
