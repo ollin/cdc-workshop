@@ -32,6 +32,7 @@ public class AddressServiceAdapterTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(AddressServiceAdapterTest.class);
 
 
+    // tag::shouldDeliverAnAddress[]
     @Test
     public void shouldDeliverAnAddress() {
         String responseBody = QuoteUtil.convert("{'firstName': 'Jan', 'surname': 'Wloka'}");
@@ -39,6 +40,7 @@ public class AddressServiceAdapterTest {
 
         runTest(fragment);
     }
+    // end::shouldDeliverAnAddress[]
 
     private PactFragment buildPactFragment(String body, String responseBody, String description) {
         Map<String, String> headers = new HashMap<>();

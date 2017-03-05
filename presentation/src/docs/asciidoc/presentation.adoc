@@ -3,6 +3,8 @@ Oliver Nautsch <oliver.nautsch@nautsch.com>
 2017
 :author:
 ifndef::imagesdir[:imagesdir: images]
+ifndef::address-sourcedir[:address-sourcedir: ../../../../address-service]
+ifndef::invoice-sourcedir[:invoice-sourcedir: ../../../../invoice-service]
 :menu:
 :goto:
 :scale:
@@ -62,6 +64,22 @@ image::service-overview.draw.io.png[projects - producer - consumer]
 └── settings.gradle
 ----
 
+== Consumers test
+
+[source,java]
+.AddressServiceAdapterTest.java
+----
+...
+include::{invoice-sourcedir}/src/test/java/net/nautsch/invoice/adapters/address/AddressServiceAdapterTest.java[tags=shouldDeliverAnAddress]
+...
+----
+
+== Exercise-02 - Add street
+
+The Consumer needs a street value
+
+Add the field "street" as an expected result.
+
 == The end
 
-dada
+Thx!!!
