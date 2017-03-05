@@ -24,15 +24,13 @@ Let's exercise, hack and talk about
 
 * checkout repo `git@github.com:ollin/cdc-workshop.git`
 * cd into `cdc-workshop`
-* run `./gradlew verify` (`./gradlew.bat` on windows) (not from IDE because of the env variable `pact.rootDir` defined in build.gradle, or you add this environment variable)
+* run `./gradlew check` (`./gradlew.bat check` on windows) (not from IDE because of the env variable `pact.rootDir` defined in build.gradle, or you add this environment variable)
 
-== Projects
-
-=== Overview
+== Project Overview
 
 image::service-overview.draw.io.png[projects - producer - consumer]
 
-=== Directory Structure
+== Directory Structure
 
 ----
 ✔ ~/dev/src/github.com/ollin/cdc-workshop [master|✚ 2]
