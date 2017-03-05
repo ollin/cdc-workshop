@@ -1,7 +1,7 @@
 = Consumer Driven Contracts - a workshop
 Oliver Nautsch <oliver.nautsch@nautsch.com>
 2017
-:author:    dada
+:author:
 ifndef::imagesdir[:imagesdir: images]
 :menu:
 :goto:
@@ -14,15 +14,53 @@ ifndef::imagesdir[:imagesdir: images]
 
 == Introduction
 
-=== Run the test
+Let's exercise, hack and talk about
 
-* checkout repo ``
-* cd into cdc-workshop
-* run `gradle test` (not from IDE because of the env variable `pact.rootDir` defined in build.gradle, or you add this environment variable)
+*Consumer Driven* Contracts.
 
-=== Projects
+== Exercise-01 - Run the test
+
+* checkout repo `git@github.com:ollin/cdc-workshop.git`
+* cd into `cdc-workshop`
+* run `./gradlew verify` (`./gradlew.bat` on windows) (not from IDE because of the env variable `pact.rootDir` defined in build.gradle, or you add this environment variable)
+
+== Projects
+
+=== Overview
 
 image::service-overview.draw.io.png[projects - producer - consumer]
+
+=== Directory Structure
+
+----
+✔ ~/dev/src/github.com/ollin/cdc-workshop [master|✚ 2]
+15:59 $ tree -L 2
+.
+├── address-service     # <-- producer
+│   ├── build
+│   ├── build.gradle
+│   ├── README.adoc
+│   └── src
+├── build.gradle        # <-- build file for both
+├── gradle
+│   └── wrapper
+├── gradlew
+├── gradlew.bat
+├── invoice-service     # <-- consumer
+│   ├── build
+│   ├── build.gradle
+│   ├── README.adoc
+│   ├── src
+│   └── target
+├── out
+│   └── production
+├── presentation
+│   ├── build
+│   ├── build.gradle
+│   └── src
+├── README.adoc
+└── settings.gradle
+----
 
 == The end
 
