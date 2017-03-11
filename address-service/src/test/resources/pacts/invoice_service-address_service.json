@@ -21,6 +21,14 @@
                 "body": {
                     "firstName": "Jan",
                     "surname": "Wloka"
+                },
+                "matchingRules": {
+                    "$.body.firstName": {
+                        "match": "type"
+                    },
+                    "$.body.surname": {
+                        "match": "type"
+                    }
                 }
             }
         }

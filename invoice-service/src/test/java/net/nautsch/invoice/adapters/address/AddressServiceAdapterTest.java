@@ -4,15 +4,13 @@ import au.com.dius.pact.consumer.ConsumerPactBuilder;
 import au.com.dius.pact.consumer.PactError;
 import au.com.dius.pact.consumer.TestRun;
 import au.com.dius.pact.consumer.VerificationResult;
-import au.com.dius.pact.consumer.dsl.QuoteUtil;
+import au.com.dius.pact.consumer.dsl.PactDslJsonBody;
 import au.com.dius.pact.model.MockProviderConfig;
 import au.com.dius.pact.model.PactFragment;
 import au.com.dius.pact.model.PactSpecVersion;
 import net.nautsch.invoice.Address;
 import org.apache.http.entity.ContentType;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,20 +27,25 @@ public class AddressServiceAdapterTest {
     private static final String ADDRESS = "address_service";
     private static final String INVOICE = "invoice_service";
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AddressServiceAdapterTest.class);
-
 
     // tag::shouldDeliverAnAddress[]
     @Test
     public void shouldDeliverAnAddress() {
-        String responseBody = QuoteUtil.convert("{'firstName': 'Jan', 'surname': 'Wloka'}");
-        PactFragment fragment = buildPactFragment("", responseBody, "get an address");
+        PactDslJsonBody responseBody = new PactDslJsonBody()
+                .stringType("firstName", "Jan")
+                .stringType("surname", "Wloka");
+
+        PactFragment fragment = buildPactFragment(responseBody, "get an address");
 
         runTest(fragment);
     }
     // end::shouldDeliverAnAddress[]
 
-    private PactFragment buildPactFragment(String body, String responseBody, String description) {
+    private PactFragment buildPactFragment(PactDslJsonBody responseBody, String description) {
+        return buildPactFragment("", responseBody, description);
+    }
+
+    private PactFragment buildPactFragment(String requestBody, PactDslJsonBody responseBody, String description) {
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", ContentType.APPLICATION_JSON.toString());
         return ConsumerPactBuilder
@@ -51,7 +54,7 @@ public class AddressServiceAdapterTest {
                 .uponReceiving(description)
                     .path("/addresses/1")
                     .method("GET")
-                    .body(body)
+                    .body(requestBody)
                     .headers(new HashMap<>())
                 .willRespondWith()
                     .status(200)
