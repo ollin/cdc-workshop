@@ -1,1 +1,3 @@
 = invoice service
+
+Tine _invoice service_ uses addresses, it is a *consumer* of the address service.

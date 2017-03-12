@@ -1,1 +1,3 @@
-= invoice service
+= address service
+
+The _address service_ which delivers addresses to other services. It is the *producer*.
