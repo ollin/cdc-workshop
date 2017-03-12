@@ -96,3 +96,8 @@ asciidoctor {
     dependsOn download
 }
 
+task present(type:Exec) {
+    dependsOn asciidoctor
+    commandLine 'firefox', "$buildDir/asciidoc/html5/presentation.html"
+}
+
