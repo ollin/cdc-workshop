@@ -78,6 +78,22 @@ The Consumer needs a street value
 
 Add the field "street" as an expected result.
 
+Run the tests.
+
+Let's discuss.
+
+== Exercise-03 - Tolerant pact-Tests
+
+Change the production code! _Jan Wloka_ to _Bernd Wloka_.
+
+Whats wrong with the _address_ acceptance test? Change them.
+
+Why does the pact test works?
+
+Run the tests.
+
+Let's discuss.
+
 == The end
 
 Thx!!!
