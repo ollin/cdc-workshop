@@ -86,13 +86,18 @@ Let's discuss.
 
 Change the production code! _Jan Wloka_ to _Bernd Wloka_.
 
-Whats wrong with the _address_ acceptance test? Change them.
+Whats wrong with the _address_ acceptance test? Fix it!
+
+.Source: https://martinfowler.com/bliki/TestPyramid.html
+image::test-pyramid.png[test pyramid]
 
 Why does the pact test works?
 
 Run the tests.
 
 Let's discuss.
+
+
 
 == The end
 
