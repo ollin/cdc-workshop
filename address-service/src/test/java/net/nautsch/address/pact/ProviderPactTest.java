@@ -17,6 +17,7 @@ import org.springframework.test.context.TestContextManager;
 @RunWith(PactRunner.class) // Say JUnit to run tests with custom Runner
 @Provider("address_service")
 @PactFolder("pacts")
+//@PactBroker(host="broker.nautsch.net", port = "80")
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class ProviderPactTest {
 
