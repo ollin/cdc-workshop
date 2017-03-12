@@ -65,7 +65,7 @@ image::service-overview.draw.io.png[projects - producer - consumer]
 == Consumers test
 
 [source,java]
-.AddressServiceAdapterTest.java
+.cdc-workshop/invoice-service/src/test/java/net/nautsch/invoice/adapters/address/AddressServiceAdapterTest.java
 ----
 ...
 include::{invoice-sourcedir}/src/test/java/net/nautsch/invoice/adapters/address/AddressServiceAdapterTest.java[tags=shouldDeliverAnAddress]
@@ -105,7 +105,10 @@ Run the tests.
 
 Let's discuss.
 
+== Exercise-04 - Split the teams
 
+.known dependencies
+image::more-services.draw.io.png[known dependencies]
 
 == The end
 
