@@ -8,14 +8,14 @@ networks:
 
 services:
   nginxedge:
-    image: jwilder/nginx-proxy
+    build:
+      context: ./nginxedge
     container_name: nginx-edge
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
-      - "./nginxedge/my_proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro"
     networks:
       nautsch.net:
     restart: always
