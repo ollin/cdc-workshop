@@ -1,0 +1,55 @@
+version: '2'
+
+volumes:
+  db-data:
+
+networks:
+  nautsch.net:
+
+services:
+  nginxedge:
+    image: jwilder/nginx-proxy
+    container_name: nginx-edge
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+      - "./nginxedge/my_proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro"
+    networks:
+      nautsch.net:
+    restart: always
+  broker:
+    image: dius/pact_broker
+    container_name: broker
+    environment:
+      - PACT_BROKER_DATABASE_USERNAME=broker
+      - PACT_BROKER_DATABASE_PASSWORD=broker123
+      - PACT_BROKER_DATABASE_HOST=db.nautsch.net
+      - PACT_BROKER_DATABASE_NAME=broker
+      - VIRTUAL_HOST=broker.nautsch.net
+      - VIRTUAL_PORT=80
+    networks:
+      nautsch.net:
+        aliases:
+          - broker.nautsch.net
+    links:
+      - db
+  db:
+    build:
+      context: ./db
+    container_name: db
+    hostname: db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=admin123
+      - POSTGRES_USER=admin
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - db-data:/var/lib/postgresql/data/pgdata
+    networks:
+      nautsch.net:
+        aliases:
+          - db.nautsch.net
+    restart: always
