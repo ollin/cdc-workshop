@@ -16,11 +16,13 @@ public class Addresses {
 
     private final Map<String, Address> addressesBackend = new HashMap<>();
 
+    // tag::Addresses[]
     Addresses() {
         add(new Address("1","Wloka", "Jan"));
         add(new Address("2","Nieminen", "Miko"));
         add(new Address("3","Nautsch", "Oliver"));
     }
+    // end::Addresses[]
 
     private void add(Address address) {
         this.addressesBackend.put(address.getId(), address);

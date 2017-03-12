@@ -84,6 +84,14 @@ Let's discuss.
 
 == Exercise-03 - Tolerant pact-Tests
 
+[source,java]
+.net.nautsch.address.Addresses
+----
+...
+include::{address-sourcedir}/src/main/java/net/nautsch/address/Addresses.java[tags=Addresses]
+...
+----
+
 Change the production code! _Jan Wloka_ to _Bernd Wloka_.
 
 Whats wrong with the _address_ acceptance test? Fix it!
