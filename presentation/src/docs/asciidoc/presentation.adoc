@@ -112,9 +112,9 @@ Whats wrong with the _address_ acceptance test? Fix it!
 .Source: https://martinfowler.com/bliki/TestPyramid.html
 image::test-pyramid.png[test pyramid]
 
-Why does the pact test works?
-
 Run the tests.
+
+Why does the pact test pass? And the acceptance test did not?
 
 Let's discuss.
 
@@ -123,6 +123,22 @@ Let's discuss.
 .known dependencies
 image::more-services.draw.io.png[known dependencies]
 
+== A little bit of theory
+
+image::concept-pact-two-parts.png[title="Source: pact.io"]
+
+What are pact tests good for? Let's discuss.
+
+
 == The end
 
 Thx!!!
+
+
+*Further Reading:*
+
+* https://martinfowler.com/articles/consumerDrivenContracts.html[Consumer-Driven Contracts: A Service Evolution Pattern]
+* https://docs.pact.io[pact.io: Consumer Driven Contracts]
+* http://www.drdobbs.com/testing/simplifying-contract-testing/240167128[Dr. Dobb's: Simplifying Contract Testing]
+* This silde deck: `./gradlew asciidoctor`
+
