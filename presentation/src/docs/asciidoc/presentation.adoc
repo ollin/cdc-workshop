@@ -81,13 +81,17 @@ include::{invoice-sourcedir}/src/test/java/net/nautsch/invoice/pact/AddressServi
 
 == Exercise-02 - Add street to consumer
 
-The Consumer needs a street value
+The Consumer needs a street for an address.
 
 Add the field "street" as an expected result.
 
+*Hint:* Change the pact consumer test (`AddressServiceAdapterTest`) first.
+
 image::consumer-model-extended.png[consumer - extended]
 
-Run the tests.
+Run the tests and see it fail.
+
+Try to fix the tests.
 
 Let's discuss.
 
