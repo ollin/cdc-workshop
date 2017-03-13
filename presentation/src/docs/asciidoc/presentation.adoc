@@ -80,6 +80,8 @@ The Consumer needs a street value
 
 Add the field "street" as an expected result.
 
+image::consumer-model-extended.png[consumer - extended]
+
 Run the tests.
 
 Let's discuss.
