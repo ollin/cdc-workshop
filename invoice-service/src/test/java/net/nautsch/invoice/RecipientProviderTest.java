@@ -3,8 +3,6 @@ package net.nautsch.invoice;
 import net.nautsch.invoice.adapters.address.AddressToRecipientConverter;
 import org.junit.Test;
 
-import java.util.function.Function;
-
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
