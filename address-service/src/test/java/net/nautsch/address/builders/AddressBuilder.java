@@ -1,4 +1,6 @@
-package net.nautsch.address;
+package net.nautsch.address.builders;
+
+import net.nautsch.address.Address;
 
 public class AddressBuilder {
 

@@ -1,53 +1,52 @@
-package net.nautsch.invoice.adapters.address;
+package net.nautsch.invoice.pact;
 
 import au.com.dius.pact.consumer.ConsumerPactBuilder;
 import au.com.dius.pact.consumer.PactError;
-import au.com.dius.pact.consumer.TestRun;
 import au.com.dius.pact.consumer.VerificationResult;
 import au.com.dius.pact.consumer.dsl.PactDslJsonBody;
 import au.com.dius.pact.model.MockProviderConfig;
 import au.com.dius.pact.model.PactFragment;
 import au.com.dius.pact.model.PactSpecVersion;
+import java.util.Collections;
+import java.util.function.Consumer;
 import net.nautsch.invoice.Address;
-import org.apache.http.entity.ContentType;
+import net.nautsch.invoice.adapters.address.AddressServiceAdapter;
+
+import org.apache.http.HttpStatus;
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import static au.com.dius.pact.consumer.ConsumerPactTest.PACT_VERIFIED;
+import static org.apache.http.entity.ContentType.APPLICATION_JSON;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 /**
- * integration test.
+ * Pact consumer test, generates the consumer contract.
  */
 public class AddressServiceAdapterTest {
 
     private static final String ADDRESS = "address_service";
     private static final String INVOICE = "invoice_service";
 
-
-    // tag::shouldDeliverAnAddress[]
+    // tag::shouldDeliverValidAddress[]
     @Test
-    public void shouldDeliverAnAddress() {
+    public void shouldDeliverValidAddress() {
         PactDslJsonBody responseBody = new PactDslJsonBody()
                 .stringType("firstName", "Jan")
                 .stringType("surname", "Wloka");
 
-        PactFragment fragment = buildPactFragment(responseBody, "get an address");
+        PactFragment pact = buildPact("", responseBody, "get an address");
 
-        runTest(fragment);
+        assertPact(pact, config -> {
+            Address actual = new AddressServiceAdapter(config.url()).getAddress("1");
+
+            assertThat(actual.getFirstName(), is("Jan"));
+            assertThat(actual.getSurname(), is("Wloka"));
+        });
     }
-    // end::shouldDeliverAnAddress[]
+    // end::shouldDeliverValidAddress[]
 
-    private PactFragment buildPactFragment(PactDslJsonBody responseBody, String description) {
-        return buildPactFragment("", responseBody, description);
-    }
-
-    private PactFragment buildPactFragment(String requestBody, PactDslJsonBody responseBody, String description) {
-        Map<String, String> headers = new HashMap<>();
-        headers.put("Content-Type", ContentType.APPLICATION_JSON.toString());
+    private PactFragment buildPact(String requestBody, PactDslJsonBody responseBody, String description) {
         return ConsumerPactBuilder
                 .consumer(INVOICE)
                 .hasPactWith(ADDRESS)
@@ -55,24 +54,17 @@ public class AddressServiceAdapterTest {
                     .path("/addresses/1")
                     .method("GET")
                     .body(requestBody)
-                    .headers(new HashMap<>())
+                    .headers(Collections.emptyMap())
                 .willRespondWith()
-                    .status(200)
+                    .status(HttpStatus.SC_OK)
                     .body(responseBody)
-                    .headers(headers)
+                    .headers(Collections.singletonMap("Content-Type", APPLICATION_JSON.toString()))
                     .toFragment();
     }
 
-    private void runTest(final PactFragment pactFragment) {
+    private void assertPact(PactFragment pact, Consumer<MockProviderConfig> consumer) {
         MockProviderConfig config = MockProviderConfig.createDefault(PactSpecVersion.V3);
-        VerificationResult result = pactFragment.runConsumer(config, new TestRun() {
-            @Override
-            public void run(MockProviderConfig config) {
-                Address result = new AddressServiceAdapter(config.url()).getAddress("1");
-                assertThat(result.getFirstName(), is("Jan"));
-                assertThat(result.getSurname(), is("Wloka"));
-            }
-        });
+        VerificationResult result = pact.runConsumer(config, consumer::accept);
 
         if (result instanceof PactError) {
             throw new RuntimeException(((PactError)result).error());

@@ -1,4 +1,4 @@
-package net.nautsch.address;
+package net.nautsch.address.builders;
 
 public class a {
 

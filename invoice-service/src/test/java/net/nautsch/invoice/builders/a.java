@@ -1,11 +1,11 @@
-package net.nautsch.invoice;
+package net.nautsch.invoice.builders;
 
 /**
  * start point for all test data builders.
  */
 public class a {
 
-    public static AddressProviderBuilder recipientProvider() {
+    public static AddressProviderBuilder addressProvider() {
         return new AddressProviderBuilder();
     }
 

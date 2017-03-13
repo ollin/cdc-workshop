@@ -1,6 +1,8 @@
 package net.nautsch.invoice;
 
 import net.nautsch.invoice.adapters.address.AddressToRecipientConverter;
+import net.nautsch.invoice.builders.a;
+
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -15,7 +17,7 @@ public class RecipientProviderTest {
     public void shouldDeliverRecipient() {
         // given
         AddressProvider addressProvider =
-                a.recipientProvider().delivering(a.address()).build();
+                a.addressProvider().delivering(a.address()).build();
 
         RecipientProvider sut = new RecipientProvider(addressProvider, new AddressToRecipientConverter());
         // when

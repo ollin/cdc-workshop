@@ -1,5 +1,7 @@
 package net.nautsch.address;
 
+import net.nautsch.address.builders.a;
+
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

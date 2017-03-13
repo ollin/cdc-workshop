@@ -1,4 +1,6 @@
-package net.nautsch.invoice;
+package net.nautsch.invoice.builders;
+
+import net.nautsch.invoice.Address;
 
 /**
  * test data builder.
@@ -7,6 +9,10 @@ public class AddressBuilder {
 
     private String surname = "surname";
     private String firstname = "firstname";
+
+    AddressBuilder() {
+        super();
+    }
 
     public Address build() {
         return new AddressDummy();

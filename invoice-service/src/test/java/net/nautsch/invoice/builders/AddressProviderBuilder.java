@@ -1,22 +1,29 @@
-package net.nautsch.invoice;
+package net.nautsch.invoice.builders;
+
+import net.nautsch.invoice.Address;
+import net.nautsch.invoice.AddressProvider;
 
 /**
  * test data builder.
  */
-class AddressProviderBuilder {
+public class AddressProviderBuilder {
 
     private Address addressToDeliver;
 
-    AddressProvider build() {
+    AddressProviderBuilder() {
+        super();
+    }
+
+    public AddressProvider build() {
         return new AddressProviderDummy();
     }
 
-    AddressProviderBuilder delivering(Address address) {
+    public AddressProviderBuilder delivering(Address address) {
         this.addressToDeliver = address;
         return this;
     }
 
-    AddressProviderBuilder delivering(AddressBuilder address) {
+    public AddressProviderBuilder delivering(AddressBuilder address) {
         this.delivering(address.build());
         return this;
     }

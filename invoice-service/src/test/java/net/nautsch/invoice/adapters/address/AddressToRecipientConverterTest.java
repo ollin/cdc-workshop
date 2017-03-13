@@ -2,7 +2,7 @@ package net.nautsch.invoice.adapters.address;
 
 import net.nautsch.invoice.Address;
 import net.nautsch.invoice.Recipient;
-import net.nautsch.invoice.a;
+import net.nautsch.invoice.builders.a;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

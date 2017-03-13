@@ -22,11 +22,16 @@ Let's exercise, hack and talk about
 
 image::service-example.png[consumer - communicate - producer]
 
-== Exercise-01 - Run the test
+== Exercise-01 - Run the tests
 
-* checkout repo `git@github.com:ollin/cdc-workshop.git`
-* cd into `cdc-workshop`
-* run `./gradlew check` (on windows: `./gradlew.bat check`)
+* *Get the code:*
+** checkout repo +
+     `git@github.com:ollin/cdc-workshop.git`
+** cd into `cdc-workshop`
+* *Check your setup:*
+** run `./gradlew check` (on windows: `./gradlew.bat`)
+* *Run the tests:*
+** run `./gradlew clean test` (on windows: `./gradlew.bat`)
 
 == Project Overview
 
@@ -67,14 +72,14 @@ image::service-overview.png[projects - producer - consumer]
 == Consumers test
 
 [source,java]
-.cdc-workshop/invoice-service/src/test/java/net/nautsch/invoice/adapters/address/AddressServiceAdapterTest.java
+.cdc-workshop/invoice-service/src/test/java/net/nautsch/invoice/pact/AddressServiceAdapterTest.java
 ----
 ...
-include::{invoice-sourcedir}/src/test/java/net/nautsch/invoice/adapters/address/AddressServiceAdapterTest.java[tags=shouldDeliverAnAddress]
+include::{invoice-sourcedir}/src/test/java/net/nautsch/invoice/pact/AddressServiceAdapterTest.java[tags=shouldDeliverValidAddress]
 ...
 ----
 
-== Exercise-02 - Add street
+== Exercise-02 - Add street to consumer
 
 The Consumer needs a street value
 
