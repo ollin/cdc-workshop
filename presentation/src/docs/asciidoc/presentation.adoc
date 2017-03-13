@@ -20,15 +20,17 @@ Let's exercise, hack and talk about
 
 *Consumer Driven* Contracts.
 
+image::service-example.png[consumer - communicate - producer]
+
 == Exercise-01 - Run the test
 
 * checkout repo `git@github.com:ollin/cdc-workshop.git`
 * cd into `cdc-workshop`
-* run `./gradlew check` (`./gradlew.bat check` on windows) (not from IDE because of the env variable `pact.rootDir` defined in build.gradle, or you add this environment variable)
+* run `./gradlew check` (on windows: `./gradlew.bat check`)
 
 == Project Overview
 
-image::service-overview.draw.io.png[projects - producer - consumer]
+image::service-overview.png[projects - producer - consumer]
 
 == Directory Structure
 
